@@ -28,3 +28,23 @@ order by Rv.name, M.title, Rt.stars;
 
 --Q6: For all cases where the same reviewer rated the same movie twice and gave it a higher rating the second time, return the reviewer's name and the title of the movie. 
 Query:
+select name, title FROM
+(select name, count(Rating.rID) as cnt, 
+Rating.mID, title, stars,ratingDate
+from Rating
+join Reviewer on Rating.rid = Reviewer.rid
+join Movie on Movie.mID = Rating.mID
+ group by Rating.rID, Rating.mID) as T
+WHERE t.cnt > 1 LIMIT 1;
+
+--Q7: For each movie that has at least one rating, find the highest number of stars that movie received. Return the movie title and number of stars. Sort by movie title. 
+Query:
+select title, MAX(stars) from Rating
+join Movie on Movie.mID=Rating.mID
+group by Movie.mID
+order by title;
+
+--Q8: For each movie, return the title and the 'rating spread', that is, the difference between highest and lowest ratings given to that movie. Sort by rating spread from highest to lowest, then by movie title. 
+Query:
+select title,max(stars)-min(stars) as Ratingspread from Movie, Rating 
+where Movie.mID=Rating.mID group by title order by Ratingspread desc;
