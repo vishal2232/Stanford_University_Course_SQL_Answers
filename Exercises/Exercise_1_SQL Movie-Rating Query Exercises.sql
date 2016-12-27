@@ -29,7 +29,7 @@ order by Rv.name, M.title, Rt.stars;
 --Q6: For all cases where the same reviewer rated the same movie twice and gave it a higher rating the second time, return the reviewer's name and the title of the movie. 
 Query:
 select name, title FROM
-(select name, count(Rating.rID) as cnt, 
+(select name, count(Rating.rID) as total_count, 
 Rating.mID, title, stars,ratingDate
 from Rating
 join Reviewer on Rating.rid = Reviewer.rid
