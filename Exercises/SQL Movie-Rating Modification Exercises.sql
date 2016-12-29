@@ -15,7 +15,5 @@ mID in (select mID from (select Rating.mID,avg(stars) as average
   from Movie, Rating where Movie.mID=Rating.mID 
   group by Rating.mID, year) where average>=4);
 
---Q4 Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades. Sort by grade, then by name within each grade. 
-Query
-select name,grade from Highschooler where ID not in (select ID1 from Likes union select ID2 from Likes) order by grade, name;
+--Q4 
   
