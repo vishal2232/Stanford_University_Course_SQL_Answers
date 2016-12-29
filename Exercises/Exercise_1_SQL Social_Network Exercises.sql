@@ -14,3 +14,7 @@ where gradeDiff>1;
 Query:
 select h1.name, h1.grade, h2.name, h2.grade  from Likes l1, Likes l2, Highschooler h1, Highschooler h2
 where l1.ID1=l2.ID2 and l2.ID1=l1.ID2 and l1.ID1=h1.ID and l1.ID2=h2.ID and h2.name>h1.name;
+
+--q4: Find all students who do not appear in the Likes table (as a student who likes or is liked) and return their names and grades. Sort by grade, then by name within each grade. 
+Query
+select name,grade from Highschooler where ID not in (select ID1 from Likes union select ID2 from Likes) order by grade, name;
