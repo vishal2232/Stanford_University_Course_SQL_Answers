@@ -7,4 +7,4 @@ where grade = 12;
 Query
 delete from Likes
 where ID2 in (select ID2 from Friend where Likes.ID1 = ID1) and
-      ID2 not in (select L.ID1 from Likes L where Likes.ID1 = L.ID2);
+      ID2 not in (select Lyk.ID1 from Likes Lyk where Likes.ID1 = Lyk.ID2);
