@@ -42,3 +42,8 @@ where H1.ID = Likes.ID1 and Likes.ID2 = H2.ID and
   H1.ID = F1.ID1 and F1.ID2 = H3.ID and
   H3.ID = F2.ID1 and F2.ID2 = H2.ID;
 
+--Q8: Find the difference between the number of students in the school and the number of different first names. 
+Query
+select st.sNum-nm.nNum from 
+(select count(*) as sNum from Highschooler) as st,
+(select count(distinct name) as nNum from Highschooler) as nm;
