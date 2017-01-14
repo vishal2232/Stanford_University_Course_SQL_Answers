@@ -47,3 +47,9 @@ Query
 select st.sNum-nm.nNum from 
 (select count(*) as sNum from Highschooler) as st,
 (select count(distinct name) as nNum from Highschooler) as nm;
+
+--Q9: Find the name and grade of all students who are liked by more than one other student. 
+Query
+select name, grade 
+from (select ID2, count(ID2) as numLiked from Likes group by ID2), Highschooler
+where numLiked>1 and ID2=ID;
